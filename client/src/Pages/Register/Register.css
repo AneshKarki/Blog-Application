@@ -1,0 +1,60 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.backgrdDiv {
+  background-image: url("../../../public/blog.png");
+  height: 100vh;
+  border: 1px solid red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.blurDiv {
+  border: 0px solid white;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  height: 85%;
+  width: 70%;
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+.registerDiv {
+  border: 1px solid white;
+  height: 75%;
+  width: 45%;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  gap: 10px;
+}
+.RYH {
+  font-family: cursive;
+  color: darkgray;
+  font-size: 32px;
+  padding: 10px;
+}
+.inputFields {
+  display: flex;
+  width: 90%;
+  height: 30px;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  /* color: white; */
+}
+.registerBtn {
+  width: 80%;
+  margin-left: 15px;
+  height: 6vh;
+  border-radius: 7px;
+  border: none;
+  color: white;
+  background-color: darkcyan;
+  font-size: 15px;
+}
