@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import "./Register.css";
+// import { Navigate } from "react-router-dom";
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -16,14 +17,14 @@ const Register = () => {
           email,
           password,
         });
-        if (res) {
-          console.log(res);
+        if (res.status == 200) {
+          alert("register successfully");
+          setEmail("");
+          setPassword("");
         }
       } catch (err) {
         console.log(err);
       }
-    //   setEmail("");
-    //   setPassword("");
     }
   };
   return (
