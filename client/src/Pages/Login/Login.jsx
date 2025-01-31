@@ -1,10 +1,11 @@
 import { useState } from "react";
 import "./Login.css";
 import axios from "axios";
-// import { Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
   const loginP = async (e) => {
     console.log(email, password);
     e.preventDefault();
@@ -19,6 +20,7 @@ const Login = () => {
         console.log(res);
         if (res.status == 200) {
           alert("login sucessfully");
+          navigate("/");
           // Navigate
         } else {
           alert("incorrect credintials");
@@ -64,11 +66,13 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
               type="text"
             />
-
             <button className="btnsL" type="submit">
               Login
             </button>
           </form>
+          <Link to="/register" style={{ textDecoration: "none" }}>
+            <div>Dont have Account? Register</div>
+          </Link>
         </div>
       </div>
     </>

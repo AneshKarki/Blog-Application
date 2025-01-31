@@ -23,7 +23,7 @@
   align-items: center;
   border-radius: 10px;
 }
-.registerDiv {
+.registerDiv  {
   border: 1px solid white;
   height: 75%;
   width: 45%;
@@ -32,6 +32,7 @@
   flex-direction: column;
   padding: 20px;
   gap: 10px;
+  justify-content: center;
 }
 .RYH {
   font-family: cursive;

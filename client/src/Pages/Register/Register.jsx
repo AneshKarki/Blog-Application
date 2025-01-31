@@ -1,10 +1,12 @@
 import { useState } from "react";
 import axios from "axios";
 import "./Register.css";
+import { Link, useNavigate } from "react-router-dom";
 // import { Navigate } from "react-router-dom";
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
   const register = async (e) => {
     e.preventDefault();
     if (email.length == 0) {
@@ -21,6 +23,7 @@ const Register = () => {
           alert("register successfully");
           setEmail("");
           setPassword("");
+          navigate("/login");
         }
       } catch (err) {
         console.log(err);
@@ -60,6 +63,11 @@ const Register = () => {
                 Register
               </button>
             </form>
+            <Link to="/login" style={{ textDecoration: "none" }}>
+              <div style={{ paddingLeft: "50px ", color: "Black" }}>
+                <b>Already Have Accounts? Login</b>
+              </div>
+            </Link>
           </div>
         </div>
       </div>
