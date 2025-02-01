@@ -5,7 +5,11 @@ import LandingPage from "./Pages/LandingPage/LandingPage";
 
 function App() {
   const router = createBrowserRouter([
-    { path: "/", element: <LandingPage /> },
+    { path: "/", element: <LandingPage />,
+      children:[{
+        
+      }]
+     },
     {
       path: "/register",
       element: <Register />,

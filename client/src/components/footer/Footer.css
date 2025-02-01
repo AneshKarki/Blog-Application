@@ -1,0 +1,34 @@
+.Footer {
+  height: 40vh;
+  background-color: black;
+  color: White;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 100px;
+}
+.contactUS {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.contactUS div {
+  padding: 10px;
+}
+.contactUS div:hover {
+  color: lawngreen;
+}
+.what div {
+  padding: 10px;
+}
+.what div input {
+  outline: none;
+  height: 6vh;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+}
+hr{
+    background-color: white;
+    height: 2px;
+}

@@ -1,0 +1,7 @@
+.blogDiv {
+  display: flex;
+}
+.temp {
+  overflow-y: scroll;
+  width: 100%;
+}
