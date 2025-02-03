@@ -30,3 +30,17 @@
   color: white;
   font-size: 22px;
 }
+.blogBtns {
+  margin-top: 90px;
+  display: flex;
+  justify-content: center;
+}
+.blogBtns button {
+  width: 90%;
+  height: 7vh;
+  font-size: 22px;
+  border-radius: 10px;
+  background-color: darkslategray;
+  color: WHITE;
+  border: none;
+}

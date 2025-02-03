@@ -1,0 +1,86 @@
+.outDiv {
+  /* border: 5px solid red; */
+  height: 100vh;
+}
+.inDiv {
+  border: 1px solid green;
+  display: flex;
+  flex-direction: column;
+  background-color: antiquewhite;
+  height: 100%;
+  padding: 20px;
+}
+.inDiv div {
+  /* border: 1px solid black; */
+  /* height: 20%; */
+}
+.authorC {
+  height: 10vh;
+  display: flex;
+  align-items: center;
+}
+.authorC label {
+  padding-right: 10px;
+  font-size: 24px;
+}
+.authorC input {
+  outline: none;
+  border: none;
+  border-radius: 10px;
+  height: 5vh;
+}
+.categoryC {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 10px;
+  width: 35%;
+}
+.categoryC label {
+  padding-right: 10px;
+  font-size: 24px;
+}
+.categoryC select {
+  outline: none;
+  border: none;
+}
+.imgC {
+  height: 10vh;
+  display: flex;
+  align-items: center;
+}
+.imgC label {
+  padding-right: 10px;
+  font-size: 24px;
+}
+.textC {
+  display: flex;
+  flex-direction: column;
+  /* padding: 10px; */
+}
+.textC label {
+  padding-right: 20px;
+  font-size: 24px;
+}
+.textC textarea {
+  height: 40vh;
+  outline: none;
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+.btnC {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  margin-top: 50px;
+}
+.btnC button {
+  height: 7vh;
+  width: 200px;
+  font-size: 24px;
+  outline: none;
+  border: none;
+  background-color: blueviolet;
+  border-radius: 10px;
+}
