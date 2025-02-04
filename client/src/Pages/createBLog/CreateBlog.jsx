@@ -1,22 +1,56 @@
 import { useState } from "react";
 import "./CreateBlog.css";
+import axios from "axios";
 const CreateBlog = () => {
   const [author, setAuthor] = useState("");
   const [category, setCategory] = useState("");
   const [image, setImage] = useState(null);
   const [blog, setBlog] = useState("");
+  const [preview, setPreview] = useState(null);
+
   const handleImageChange = (event) => {
     const file = event.target.files[0]; // Get the first selected file
     if (file) {
-      setImage(URL.createObjectURL(file)); // Create a temporary URL for preview
+      setImage(file);
+      setPreview(URL.createObjectURL(file)); // Create a temporary URL for preview
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
+    console.log("hi");
     e.preventDefault();
+    const formData = new FormData();
+    formData.append("author", author);
+    formData.append("category", category);
+    formData.append("blogParagraph", blog);
+    formData.append("image", image);
     if (!author || !category || !blog) {
       alert("Please fill out all fields before submitting.");
       return;
+    } else {
+      try {
+        const res = await axios.post(
+          "http://localhost:5011/api/createBlog",
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data", // Important for file upload
+            },
+          }
+        );
+        if (res.status == 200) {
+          alert("blog added succesfully");
+          setAuthor("");
+          setCategory("");
+          setImage(null);
+          setPreview(null);
+          setBlog("");
+        } else {
+          alert("Server Error!");
+        }
+      } catch (err) {
+        console.log(err);
+      }
     }
   };
 
@@ -57,7 +91,7 @@ const CreateBlog = () => {
               <input id="img" type="file" onChange={handleImageChange} />
               {image && (
                 <img
-                  src={image}
+                  src={preview}
                   alt="Preview"
                   style={{ width: "70px", marginTop: "50px" }}
                 />
