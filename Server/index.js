@@ -15,6 +15,9 @@ app.use("/api/registerUser", register);
 const createBlog = require("./routes/createBlogRoutes");
 app.use("/api/createBlog", createBlog);
 
+const getBlog = require("./routes/getBlogRoutes");
+app.use("/api/getBlog", getBlog);
+
 const login = require("./routes/loginRoutes");
 app.use("/api/loginUser", login);
 app.listen(port, () => {

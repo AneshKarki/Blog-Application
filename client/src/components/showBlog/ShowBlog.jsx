@@ -1,8 +1,28 @@
 import "./showBlog.css";
-import img from "../../../public/blog.png";
 import Footer from "../footer/Footer";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
 
 const ShowBlog = () => {
+  const [blogs, getBlogs] = useState([]);
+  const getData = async () => {
+    try {
+      const res = await axios.get("http://localhost:5011/api/getBlog");
+      if (res.status === 200) {
+        getBlogs(res.data);
+        console.log("hudai cha");
+        console.log(res.data);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   return (
     <>
       <div className="slider">
@@ -22,86 +42,25 @@ const ShowBlog = () => {
           </div>
         </div>
         <div className="blogDivs">
-          <div className="item">
-            <div className="blogImg">
-              <img src={img} alt="" />
-            </div>
-            <div className="blogCategory">Category</div>
-            <div className="blogAuthor">Author: NameHere</div>
-            <div className="blogDescription">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae
-              corrupti reiciendis aliquam placeat pariatur error quam nulla
-              numquam voluptas in ea eos consequatur autem adipisci ducimus
-              eveniet voluptates, perspiciatis odio voluptatem laborum vero
-              ipsa! Soluta iure veniam tempora similique fugiat. Amet
-              perferendis illum quaerat, id quo repellat doloribus quisquam
-              eaque.
-            </div>
-          </div>
-          <div className="item">
-            <div className="blogImg">
-              <img src={img} alt="" />
-            </div>
-            <div className="blogCategory">Category</div>
-            <div className="blogAuthor">Author: NameHere</div>
-            <div className="blogDescription">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae
-              corrupti reiciendis aliquam placeat pariatur error quam nulla
-              numquam voluptas in ea eos consequatur autem adipisci ducimus
-              eveniet voluptates, perspiciatis odio voluptatem laborum vero
-              ipsa! Soluta iure veniam tempora similique fugiat. Amet
-              perferendis illum quaerat, id quo repellat doloribus quisquam
-              eaque.
-            </div>
-          </div>
-          <div className="item">
-            <div className="blogImg">
-              <img src={img} alt="" />
-            </div>
-            <div className="blogCategory">Category</div>
-            <div className="blogAuthor">Author: NameHere</div>
-            <div className="blogDescription">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae
-              corrupti reiciendis aliquam placeat pariatur error quam nulla
-              numquam voluptas in ea eos consequatur autem adipisci ducimus
-              eveniet voluptates, perspiciatis odio voluptatem laborum vero
-              ipsa! Soluta iure veniam tempora similique fugiat. Amet
-              perferendis illum quaerat, id quo repellat doloribus quisquam
-              eaque.
-            </div>
-          </div>
-          <div className="item">
-            <div className="blogImg">
-              <img src={img} alt="" />
-            </div>
-            <div className="blogCategory">Category</div>
-            <div className="blogAuthor">Author: NameHere</div>
-            <div className="blogDescription">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae
-              corrupti reiciendis aliquam placeat pariatur error quam nulla
-              numquam voluptas in ea eos consequatur autem adipisci ducimus
-              eveniet voluptates, perspiciatis odio voluptatem laborum vero
-              ipsa! Soluta iure veniam tempora similique fugiat. Amet
-              perferendis illum quaerat, id quo repellat doloribus quisquam
-              eaque.
-            </div>
-          </div>
-          <div className="item">
-            <div className="blogImg">
-              <img src={img} alt="" />
-            </div>
-            <div className="blogCategory">Category</div>
-            <div className="blogAuthor">Author: NameHere</div>
-            <div className="blogDescription">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae
-              corrupti reiciendis aliquam placeat pariatur error quam nulla
-              numquam voluptas in ea eos consequatur autem adipisci ducimus
-              eveniet voluptates, perspiciatis odio voluptatem laborum vero
-              ipsa! Soluta iure veniam tempora similique fugiat. Amet
-              perferendis illum quaerat, id quo repellat doloribus quisquam
-              eaque.
-            </div>
-          </div>
+          {blogs &&
+            blogs.map((item) => {
+              return (
+                <div className="item" key={item._id}>
+                  <div className="blogImg">
+                    <img src={item.imageUrl} alt="blogImage" />
+                  </div>
+                  <div className="blogCategory">{item.category}</div>
+                  <div className="blogAuthor">Author: {item.author}</div>
+                  <div className="blogDescription">{item.blogParagraph}</div>
+                  <Link
+                    style={{ textDecoration: "none" }}
+                    to={`/blogs/${item._id}`}
+                  >
+                    <div>Read More</div>
+                  </Link>
+                </div>
+              );
+            })}
         </div>
         <div>
           <Footer />

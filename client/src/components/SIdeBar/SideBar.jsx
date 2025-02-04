@@ -4,8 +4,8 @@ const SideBar = () => {
   const navigate = useNavigate("");
   const createBlog = () => {
     navigate("/createblog");
-    console.log("hi");
   };
+  
   return (
     <>
       <div className="SideBarDiv">
