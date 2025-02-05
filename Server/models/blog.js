@@ -13,6 +13,9 @@ const blogSchema = mongoose.Schema({
   blogParagraph: {
     type: String,
   },
+  comment: {
+    type: Array,
+  },
 });
 
 const blog = mongoose.model("Blogs", blogSchema);

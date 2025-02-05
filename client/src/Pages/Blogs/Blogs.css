@@ -28,3 +28,36 @@
   padding: 10px 0px;
   font-size: 24px;
 }
+.commentDiv {
+  margin-top: 10px;
+  /* border: 1px solid red; */
+  padding: 10px 0px;
+}
+.cmtSection {
+  /* border: 1px solid green; */
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 10px;
+}
+.cmtSection input {
+  padding-bottom: 5px;
+  width: 100%;
+  outline: none;
+  border: none;
+  border-bottom: 2px solid black;
+}
+.arrow {
+  position: absolute;
+  right: 190px;
+  cursor: pointer;
+  color: #333;
+}
+.detailCmts{
+    display: flex;
+    justify-content: space-between;
+}
+.ShowCmt{
+    /* padding: 10px; */
+    margin-bottom: 10px;
+}

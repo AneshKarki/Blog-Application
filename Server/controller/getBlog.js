@@ -16,7 +16,6 @@ const getBlogById = async (req, res) => {
     if (!singleBlog) {
       return res.status(404).json({ message: "Blog not found" });
     }
-    // console.log(singleBlog);
     res.status(200).json(singleBlog);
   } catch (err) {
     console.log(err);

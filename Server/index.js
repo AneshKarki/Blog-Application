@@ -18,6 +18,12 @@ app.use("/api/createBlog", createBlog);
 const getBlog = require("./routes/getBlogRoutes");
 app.use("/api/getBlog", getBlog);
 
+const addCmt = require("./routes/addCmtRoutes");
+app.use("/api/cmt", addCmt);
+
+const showCmt = require("./routes/showCmtRoutes");
+app.use("/api/getComment", showCmt);
+
 const login = require("./routes/loginRoutes");
 app.use("/api/loginUser", login);
 app.listen(port, () => {
