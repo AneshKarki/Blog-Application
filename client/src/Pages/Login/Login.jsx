@@ -2,6 +2,8 @@ import { useState } from "react";
 import "./Login.css";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -20,8 +22,8 @@ const Login = () => {
         console.log(res);
         if (res.status == 200) {
           alert("login sucessfully");
+          Cookies.set("token", res.data.token, { expires: 7, path: "/" });
           navigate("/");
-          // Navigate
         } else {
           alert("incorrect credintials");
           setEmail("");

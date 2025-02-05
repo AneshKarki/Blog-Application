@@ -4,6 +4,7 @@ import "./Register.css";
 import { Link, useNavigate } from "react-router-dom";
 // import { Navigate } from "react-router-dom";
 const Register = () => {
+  const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -18,10 +19,12 @@ const Register = () => {
         const res = await axios.post("http://localhost:5011/api/registerUser", {
           email,
           password,
+          fullName,
         });
         if (res.status == 200) {
           alert("register successfully");
           setEmail("");
+          setFullName("");
           setPassword("");
           navigate("/login");
         }
@@ -37,6 +40,17 @@ const Register = () => {
           <div className="registerDiv">
             <div className="RYH">Register YourSelf Here</div>
             <form onSubmit={register}>
+              <label htmlFor="fname">Full Name</label>
+              <br />
+              <input
+                name="fname"
+                value={fullName}
+                onChange={(e) => setFullName(e.target.value)}
+                className="inputFields"
+                id="fullName"
+                type="text"
+              />
+              <br />
               <label htmlFor="email">Email</label>
               <br />
               <input

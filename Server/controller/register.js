@@ -2,9 +2,9 @@ const bcrypt = require("bcrypt");
 const user = require("../models/user");
 require("dotenv").config();
 const register = async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password, fullName } = req.body;
 
-  if (!email || !password) {
+  if (!email || !password || !fullName) {
     res.status(400).json({ message: "couldn't found email or password" });
   }
   try {
@@ -16,6 +16,7 @@ const register = async (req, res) => {
         const add = new user({
           email: email,
           password: hashedPassword,
+          fullName: fullName,
         });
         add.save();
         res.status(200).json({ message: "register Successfully" });

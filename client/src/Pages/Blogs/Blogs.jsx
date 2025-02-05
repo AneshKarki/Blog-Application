@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import NavBar from "../../components/NavBar/NavBar.jsx";
+import { MdDeleteForever } from "react-icons/md";
 import { FaArrowRightToBracket } from "react-icons/fa6";
 
 import "./Blogs.css";
@@ -11,12 +12,13 @@ const Blogs = () => {
   const [data, setData] = useState(null);
   const [postcmt, setPostCmt] = useState([]);
   const { id } = useParams();
+  const deleteCmt = () => {
+    console.log("code here");
+  };
   const getComment = async () => {
-    console.log("hello");
     try {
       const res = await axios.get(`http://localhost:5011/api/getComment/${id}`);
       if (res.status === 200) {
-        console.log(res.data);
         setPostCmt(res.data);
       }
     } catch (err) {
@@ -41,6 +43,7 @@ const Blogs = () => {
       });
       if (res.status === 200) {
         setCmt("");
+        getComment();
       }
     } catch (err) {
       console.log(err);
@@ -50,9 +53,9 @@ const Blogs = () => {
     getdetails();
     getComment();
   }, []);
-  useEffect(() => {
-    getComment();
-  }, [postcmt]);
+  // useEffect(() => {
+  //   getComment();
+  // }, [postcmt]);
   return (
     <>
       <NavBar />
@@ -72,8 +75,12 @@ const Blogs = () => {
         </div>
         <div className="blogDetails">{data?.blogParagraph}</div>
         <hr />
+        <h3>Comments</h3>
         <div className="commentDiv">
-          {postcmt &&
+          {postcmt.length==0 ? (
+            <p>no comments yet</p>
+          ) : (
+            postcmt &&
             postcmt.map((item) => {
               return (
                 <div key={item._id} className="ShowCmt">
@@ -83,10 +90,19 @@ const Blogs = () => {
                       <b>name</b>
                     </div>
                     <div style={{ fontSize: "10px" }}>{item.createdAt}</div>
+                    <div
+                      onClick={deleteCmt}
+                      className="deleteBtn"
+                      style={{ color: "red" }}
+                    >
+                      <MdDeleteForever />
+                    </div>
                   </div>
                 </div>
               );
-            })}
+            })
+          )}
+
           <hr />
           <div className="cmtSection">
             <div style={{ width: "100%", position: "relative" }}>

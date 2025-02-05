@@ -23,9 +23,9 @@
   align-items: center;
   border-radius: 10px;
 }
-.registerDiv  {
+.registerDiv {
   border: 1px solid white;
-  height: 75%;
+  height: 80%;
   width: 45%;
   border-radius: 10px;
   display: flex;
