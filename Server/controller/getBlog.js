@@ -8,4 +8,18 @@ const getBlog = async (req, res) => {
     console.log(err);
   }
 };
-module.exports = getBlog;
+const getBlogById = async (req, res) => {
+  try {
+    console.log("here");
+    const { id } = req.params;
+    const singleBlog = await blog.findById(id);
+    if (!singleBlog) {
+      return res.status(404).json({ message: "Blog not found" });
+    }
+    // console.log(singleBlog);
+    res.status(200).json(singleBlog);
+  } catch (err) {
+    console.log(err);
+  }
+};
+module.exports = { getBlog, getBlogById };
