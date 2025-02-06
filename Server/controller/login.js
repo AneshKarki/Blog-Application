@@ -18,7 +18,10 @@ const login = async (req, res) => {
     if (!comparePassword) {
       return res.status(400).json({ message: "incoorect password" });
     }
-    const token = jwt.sign({ fullName: fullName }, jwtSceretKey);
+    const token = jwt.sign(
+      { id: find._id, fullName: find.fullName },
+      jwtSceretKey
+    );
 
     return res
       .status(200)

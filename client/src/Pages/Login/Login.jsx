@@ -1,15 +1,16 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "./Login.css";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
+import { AuthContext } from "../../context/AuthContext";
 
 const Login = () => {
+  const { setToken } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const loginP = async (e) => {
-    console.log(email, password);
     e.preventDefault();
     if (email.length < 0 || password.length < 0) {
       alert("please fill all the fields");
@@ -22,7 +23,9 @@ const Login = () => {
         console.log(res);
         if (res.status == 200) {
           alert("login sucessfully");
-          Cookies.set("token", res.data.token, { expires: 7, path: "/" });
+          localStorage.setItem("token", res.data.token);
+          setToken(res.data.token);
+          // Cookies.set("token", res.data.token, { expires: 7, path: "/" });
           navigate("/");
         } else {
           alert("incorrect credintials");

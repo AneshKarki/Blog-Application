@@ -4,6 +4,7 @@ import Login from "./Pages/Login/login";
 import LandingPage from "./Pages/LandingPage/LandingPage";
 import CreateBlog from "./Pages/createBLog/CreateBlog";
 import Blogs from "./Pages/Blogs/Blogs";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   const router = createBrowserRouter([
@@ -18,11 +19,20 @@ function App() {
     },
     {
       path: "/createblog",
-      element: <CreateBlog />,
+      element: (
+        <ProtectedRoute>
+          <CreateBlog />
+        </ProtectedRoute>
+      ),
     },
     {
       path: "/blogs/:id",
-      element: <Blogs />,
+
+      element: (
+        <ProtectedRoute>
+          <Blogs />
+        </ProtectedRoute>
+      ),
     },
   ]);
   return <RouterProvider router={router} />;

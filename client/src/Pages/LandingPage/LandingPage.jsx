@@ -1,11 +1,10 @@
 import NavBar from "../../components/NavBar/NavBar";
 import ShowBlog from "../../components/showBlog/ShowBlog";
 import SideBar from "../../components/SIdeBar/SideBar";
-import Cookies from "js-cookie";
 
 import "./LandingPage.css";
 const LandingPage = () => {
-  console.log(Cookies.get("token"));
+  // console.log(Cookies.get("token"));
   return (
     <>
       <div>

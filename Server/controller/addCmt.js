@@ -1,11 +1,12 @@
 const comment = require("../models/comment");
 
 const addCmt = async (req, res) => {
-  const { cmt, id } = req.body;
+  const { cmt, id, userID } = req.body;
   try {
     const newComment = new comment({
       postId: id,
       commentText: cmt,
+      userId: userID,
     });
     const add = await newComment.save();
     if (add) {

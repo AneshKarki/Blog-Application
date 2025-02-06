@@ -7,11 +7,14 @@ import "./Blogs.css";
 import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext.jsx";
 const Blogs = () => {
   const [cmt, setCmt] = useState("");
   const [data, setData] = useState(null);
   const [postcmt, setPostCmt] = useState([]);
   const { id } = useParams();
+  const { userDetails } = useContext(AuthContext);
   const deleteCmt = () => {
     console.log("code here");
   };
@@ -20,6 +23,7 @@ const Blogs = () => {
       const res = await axios.get(`http://localhost:5011/api/getComment/${id}`);
       if (res.status === 200) {
         setPostCmt(res.data);
+        console.log(res.data);
       }
     } catch (err) {
       console.log(err);
@@ -36,10 +40,12 @@ const Blogs = () => {
     }
   };
   const addCmt = async () => {
+    const userID = userDetails?.id;
     try {
       const res = await axios.post("http://localhost:5011/api/cmt/add", {
         cmt,
         id,
+        userID,
       });
       if (res.status === 200) {
         setCmt("");
@@ -53,9 +59,6 @@ const Blogs = () => {
     getdetails();
     getComment();
   }, []);
-  // useEffect(() => {
-  //   getComment();
-  // }, [postcmt]);
   return (
     <>
       <NavBar />
@@ -77,7 +80,7 @@ const Blogs = () => {
         <hr />
         <h3>Comments</h3>
         <div className="commentDiv">
-          {postcmt.length==0 ? (
+          {postcmt.length == 0 ? (
             <p>no comments yet</p>
           ) : (
             postcmt &&
@@ -90,13 +93,17 @@ const Blogs = () => {
                       <b>name</b>
                     </div>
                     <div style={{ fontSize: "10px" }}>{item.createdAt}</div>
-                    <div
-                      onClick={deleteCmt}
-                      className="deleteBtn"
-                      style={{ color: "red" }}
-                    >
-                      <MdDeleteForever />
-                    </div>
+                    {item.userId === userDetails?.id ? (
+                      <div
+                        onClick={deleteCmt}
+                        className="deleteBtn"
+                        style={{ color: "red" }}
+                      >
+                        <MdDeleteForever />
+                      </div>
+                    ) : (
+                      <></>
+                    )}
                   </div>
                 </div>
               );

@@ -11,8 +11,6 @@ const ShowBlog = () => {
       const res = await axios.get("http://localhost:5011/api/getBlog");
       if (res.status === 200) {
         getBlogs(res.data);
-        console.log("hudai cha");
-        console.log(res.data);
       }
     } catch (err) {
       console.log(err);
