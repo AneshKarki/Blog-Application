@@ -1,10 +1,9 @@
-import React, { useContext } from "react";
-import { AuthContext } from "../context/AuthContext";
 import { Navigate } from "react-router-dom";
 
 const ProtectedRoute = ({ children }) => {
-  const { isLoggedIn } = useContext(AuthContext);
-  console.log(isLoggedIn)
+  // const { isLoggedIn } = useContext(AuthContext);
+  const isLoggedIn = localStorage.getItem("token");
+  console.log(isLoggedIn);
   return isLoggedIn ? children : <Navigate to="/login" />;
 };
 
