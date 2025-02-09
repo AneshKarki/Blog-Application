@@ -15,8 +15,19 @@ const Blogs = () => {
   const [postcmt, setPostCmt] = useState([]);
   const { id } = useParams();
   const { userDetails } = useContext(AuthContext);
-  const deleteCmt = () => {
-    console.log("code here");
+  const deleteCmt = async (cmtId) => {
+    try {
+      console.log("here");
+      const res = await axios.post(`http://localhost:5011/api/cmt/delete`, {
+        cmtId,
+      });
+      if (res.status === 200) {
+        alert("deleted");
+        getComment();
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
   const getComment = async () => {
     try {
@@ -41,11 +52,13 @@ const Blogs = () => {
   };
   const addCmt = async () => {
     const userID = userDetails?.id;
+    const fullName = userDetails?.fullName;
     try {
       const res = await axios.post("http://localhost:5011/api/cmt/add", {
         cmt,
         id,
         userID,
+        fullName,
       });
       if (res.status === 200) {
         setCmt("");
@@ -90,12 +103,12 @@ const Blogs = () => {
                   <div>{item.commentText} </div>
                   <div className="detailCmts">
                     <div style={{ fontSize: "10px" }}>
-                      <b>name</b>
+                      <b>{item.fullName}</b>
                     </div>
                     <div style={{ fontSize: "10px" }}>{item.createdAt}</div>
                     {item.userId === userDetails?.id ? (
                       <div
-                        onClick={deleteCmt}
+                        onClick={() => deleteCmt(item._id)}
                         className="deleteBtn"
                         style={{ color: "red" }}
                       >
