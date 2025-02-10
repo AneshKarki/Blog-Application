@@ -3,6 +3,7 @@ import Footer from "../footer/Footer";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { Element } from "react-scroll";
 
 const ShowBlog = () => {
   const [blogs, getBlogs] = useState([]);
@@ -39,27 +40,31 @@ const ShowBlog = () => {
             <p>Feel free to express</p>
           </div>
         </div>
-        <div className="blogDivs">
-          {blogs &&
-            blogs.map((item) => {
-              return (
-                <div className="item" key={item._id}>
-                  <div className="blogImg">
-                    <img src={item.imageUrl} alt="blogImage" />
+
+        <Element name="about">
+          <div className="blogDivs">
+            {blogs &&
+              blogs.map((item) => {
+                return (
+                  <div className="item" key={item._id}>
+                    <div className="blogImg">
+                      <img src={item.imageUrl} alt="blogImage" />
+                    </div>
+                    <div className="blogCategory">{item.category}</div>
+                    <div className="blogAuthor">Author: {item.author}</div>
+                    <div className="blogDescription">{item.blogParagraph}</div>
+                    <Link
+                      style={{ textDecoration: "none" }}
+                      to={`/blogs/${item._id}`}
+                    >
+                      <div>Read More</div>
+                    </Link>
                   </div>
-                  <div className="blogCategory">{item.category}</div>
-                  <div className="blogAuthor">Author: {item.author}</div>
-                  <div className="blogDescription">{item.blogParagraph}</div>
-                  <Link
-                    style={{ textDecoration: "none" }}
-                    to={`/blogs/${item._id}`}
-                  >
-                    <div>Read More</div>
-                  </Link>
-                </div>
-              );
-            })}
-        </div>
+                );
+              })}
+          </div>
+        </Element>
+
         <div>
           <Footer />
         </div>

@@ -1,7 +1,9 @@
-import { Link } from "react-router-dom";
 import "./NavBar.css";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
+import { Link as ScrollLink } from "react-scroll";
+import { Link as RouterLink } from "react-router-dom";
+
 const NavBar = () => {
   const { isLoggedIn, handleLogOut } = useContext(AuthContext);
   return (
@@ -11,9 +13,21 @@ const NavBar = () => {
           <img src={"../../../public/blog.png"} alt="" />
         </div>
         <div className="nextDiv">
-          <div>Home</div>
-          <div>About</div>
-          <div>Contact</div>
+          <ScrollLink to="home" smooth={true} duration={500}>
+            <div>Home</div>
+          </ScrollLink>
+          <ScrollLink to="about" smooth={true} duration={500}>
+            <div>About</div>
+          </ScrollLink>
+          <ScrollLink to="footer" smooth={true} duration={500}>
+            <div>Contact</div>
+          </ScrollLink>
+          <RouterLink
+            to="/showBlog"
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
+            <div>Blogs</div>
+          </RouterLink>
           {isLoggedIn ? (
             <div
               style={{
@@ -26,12 +40,12 @@ const NavBar = () => {
               Log out
             </div>
           ) : (
-            <Link
+            <RouterLink
               to="/login"
               style={{ textDecoration: "none", color: "inherit" }}
             >
               <div>Login</div>
-            </Link>
+            </RouterLink>
           )}
         </div>
       </div>

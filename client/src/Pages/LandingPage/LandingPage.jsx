@@ -9,13 +9,14 @@ const LandingPage = () => {
     <>
       <div>
         <NavBar />
+
         <div className="blogDiv">
           <div style={{ width: "17%" }}>
             <SideBar />
           </div>
-          <div className="temp">
-            <ShowBlog />
-          </div>
+            <div className="temp">
+              <ShowBlog />
+            </div>
         </div>
       </div>
     </>

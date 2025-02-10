@@ -1,10 +1,13 @@
 import "./Footer.css";
 import { FaCopyright } from "react-icons/fa";
+import { Element } from "react-scroll";
+
 
 const Footer = () => {
   return (
     <>
-      <div className="Footer">
+    <Element name="footer">
+    <div className="Footer">
         <div className="contactUS">
           <div>Contact Us</div>
           <div>FaceBook</div>
@@ -17,7 +20,9 @@ const Footer = () => {
             <input type="text" placeholder="abc@gmail.com" />
           </div>
         </div>
-      </div>
+      </div> 
+    </Element>
+      
       <div style={{ backgroundColor: "black", color: "white" }}>
         <hr />
         <div style={{ padding: "10px", display: "flex" }}>
