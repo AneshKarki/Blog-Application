@@ -5,6 +5,7 @@ import { jwtDecode } from "jwt-decode";
 export const AuthContext = createContext();
 
 const AuthContextProvider = ({ children }) => {
+  const [blogs, getBlogs] = useState([]);
   const [token, setToken] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userDetails, setUserDetails] = useState({});
@@ -30,6 +31,8 @@ const AuthContextProvider = ({ children }) => {
     isLoggedIn,
     handleLogOut,
     userDetails,
+    blogs,
+    getBlogs,
   };
   return (
     <AuthContext.Provider value={authValue}>{children}</AuthContext.Provider>

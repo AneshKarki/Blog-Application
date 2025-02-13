@@ -1,16 +1,21 @@
 import "./showBlog.css";
 import Footer from "../footer/Footer";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { Element } from "react-scroll";
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
 
 const ShowBlog = () => {
-  const [blogs, getBlogs] = useState([]);
+  const { blogs, getBlogs } = useContext(AuthContext);
+
   const getData = async () => {
     try {
       const res = await axios.get("http://localhost:5011/api/getBlog");
+
       if (res.status === 200) {
+        console.log(res.data);
         getBlogs(res.data);
       }
     } catch (err) {

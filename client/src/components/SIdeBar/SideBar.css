@@ -44,3 +44,9 @@
   color: WHITE;
   border: none;
 }
+
+.category div:hover {
+  background-color: darkslategray;
+  color: white;
+  cursor: pointer;
+}
