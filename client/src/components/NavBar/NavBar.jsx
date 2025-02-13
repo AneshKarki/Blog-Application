@@ -22,12 +22,7 @@ const NavBar = () => {
           <ScrollLink to="footer" smooth={true} duration={500}>
             <div>Contact</div>
           </ScrollLink>
-          <RouterLink
-            to="/showBlog"
-            style={{ textDecoration: "none", color: "inherit" }}
-          >
-            <div>Blogs</div>
-          </RouterLink>
+          <div>Blogs</div>
           {isLoggedIn ? (
             <div
               style={{

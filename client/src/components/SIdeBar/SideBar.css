@@ -50,3 +50,9 @@
   color: white;
   cursor: pointer;
 }
+
+.isActive {
+  background-color: darkslategray;
+  color: white;
+  cursor: pointer;
+}

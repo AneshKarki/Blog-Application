@@ -9,7 +9,7 @@ import { AuthContext } from "../../context/AuthContext";
 
 const ShowBlog = () => {
   const { blogs, getBlogs } = useContext(AuthContext);
-
+  
   const getData = async () => {
     try {
       const res = await axios.get("http://localhost:5011/api/getBlog");
