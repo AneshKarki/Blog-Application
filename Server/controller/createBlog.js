@@ -27,6 +27,7 @@ const createBlog = async (req, res) => {
       category: category,
       blogParagraph: blogParagraph,
       imageUrl: imageUrl,
+      blogOwner: req.user.id,
     });
     const saved = await newBlog.save();
     if (!saved) {

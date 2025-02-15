@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "./CreateBlog.css";
 import axios from "axios";
+import { AuthContext } from "../../context/AuthContext";
 const CreateBlog = () => {
+  const { token } = useContext(AuthContext);
   const [author, setAuthor] = useState("");
   const [category, setCategory] = useState("");
   const [image, setImage] = useState(null);
@@ -20,6 +22,10 @@ const CreateBlog = () => {
     console.log("hi");
     e.preventDefault();
     const formData = new FormData();
+    if (token) {
+      console.log(token);
+      formData.append("token", token);
+    }
     formData.append("author", author);
     formData.append("category", category);
     formData.append("blogParagraph", blog);
@@ -34,7 +40,8 @@ const CreateBlog = () => {
           formData,
           {
             headers: {
-              "Content-Type": "multipart/form-data", // Important for file upload
+              "Content-Type": "multipart/form-data",
+              Authorization: `Bearer ${token}`,
             },
           }
         );

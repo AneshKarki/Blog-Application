@@ -29,7 +29,6 @@ const SideBar = () => {
     } else {
       try {
         const res = await axios.get("http://localhost:5011/api/getBlog");
-        console.log("yeta");
         if (res.status === 200) {
           const data = res.data;
           const filterBlogs = data.filter(

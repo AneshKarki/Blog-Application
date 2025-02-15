@@ -1,7 +1,11 @@
+const { Mongoose } = require("mongoose");
 const mongoose = require("mongoose");
 const { type } = require("os");
 const blogSchema = mongoose.Schema({
   author: {
+    type: String,
+  },
+  blogOwner: {
     type: String,
   },
   category: {

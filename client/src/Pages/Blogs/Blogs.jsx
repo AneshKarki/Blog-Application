@@ -44,6 +44,7 @@ const Blogs = () => {
     try {
       const res = await axios.get(`http://localhost:5011/api/getBlog/${id}`);
       if (res.status === 200) {
+        console.log(res.data);
         setData(res.data);
       }
     } catch (err) {
@@ -68,6 +69,10 @@ const Blogs = () => {
       console.log(err);
     }
   };
+  const deleteBlog = async () => {
+    console.log("deleted");
+  };
+
   useEffect(() => {
     getdetails();
     getComment();
@@ -77,8 +82,16 @@ const Blogs = () => {
       <NavBar />
       <div className="mainBLog">
         <div className="blogTitle">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum autem
-          animi quasi deserunt aspernatur nihil.
+          <div>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, cum?
+          </div>
+          {data?.blogOwner === userDetails?.id ? (
+            <div className="deleteBtn" onClick={deleteBlog}>
+              <MdDeleteForever />
+            </div>
+          ) : (
+            <></>
+          )}
         </div>
         <div className="blogCatAuth">
           <div>{data?.category}</div>

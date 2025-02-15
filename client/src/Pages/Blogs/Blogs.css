@@ -5,8 +5,14 @@
   padding: 50px;
 }
 .blogTitle {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
   font-size: 32px;
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+}
+.deleteBtn{
+  color: red;
 }
 .blogCatAuth {
   display: flex;
