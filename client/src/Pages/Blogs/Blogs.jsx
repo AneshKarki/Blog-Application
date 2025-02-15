@@ -82,6 +82,7 @@ const Blogs = () => {
       <NavBar />
       <div className="mainBLog">
         <div className="blogTitle">
+          <div>{data?.title}</div>
           <div>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, cum?
           </div>
