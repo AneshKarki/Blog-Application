@@ -8,6 +8,9 @@ const blogSchema = mongoose.Schema({
   blogOwner: {
     type: String,
   },
+  blogTitle: {
+    type: String,
+  },
   category: {
     type: String,
   },

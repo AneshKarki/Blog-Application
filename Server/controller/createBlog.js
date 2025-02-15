@@ -19,7 +19,7 @@ const upload = multer({ storage });
 
 const blog = require("../models/blog");
 const createBlog = async (req, res) => {
-  const { author, category, blogParagraph } = req.body;
+  const { author, category, blogParagraph, title } = req.body;
   const imageUrl = req.file.path;
   try {
     const newBlog = new blog({
@@ -28,6 +28,7 @@ const createBlog = async (req, res) => {
       blogParagraph: blogParagraph,
       imageUrl: imageUrl,
       blogOwner: req.user.id,
+      blogTitle: title,
     });
     const saved = await newBlog.save();
     if (!saved) {

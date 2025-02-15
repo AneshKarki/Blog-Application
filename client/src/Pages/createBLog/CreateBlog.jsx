@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import "./CreateBlog.css";
 import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 const CreateBlog = () => {
   const { token } = useContext(AuthContext);
   const [author, setAuthor] = useState("");
@@ -9,6 +10,8 @@ const CreateBlog = () => {
   const [image, setImage] = useState(null);
   const [blog, setBlog] = useState("");
   const [preview, setPreview] = useState(null);
+  const [title, setTitle] = useState("");
+  const navigate = useNavigate();
 
   const handleImageChange = (event) => {
     const file = event.target.files[0]; // Get the first selected file
@@ -19,7 +22,6 @@ const CreateBlog = () => {
   };
 
   const handleSubmit = async (e) => {
-    console.log("hi");
     e.preventDefault();
     const formData = new FormData();
     if (token) {
@@ -27,6 +29,7 @@ const CreateBlog = () => {
       formData.append("token", token);
     }
     formData.append("author", author);
+    formData.append("title", title);
     formData.append("category", category);
     formData.append("blogParagraph", blog);
     formData.append("image", image);
@@ -52,6 +55,7 @@ const CreateBlog = () => {
           setImage(null);
           setPreview(null);
           setBlog("");
+          navigate("/");
         } else {
           alert("Server Error!");
         }
@@ -103,6 +107,18 @@ const CreateBlog = () => {
                   style={{ width: "70px", marginTop: "50px" }}
                 />
               )}
+            </div>
+            <div className="titleC">
+              <label htmlFor="title">Title</label>
+              <input
+                type="text"
+                name="title"
+                id="title"
+                value={title}
+                onChange={(e) => {
+                  setTitle(e.target.value);
+                }}
+              />
             </div>
             <div className="textC">
               <label htmlFor="blog">Write Blog Here</label>

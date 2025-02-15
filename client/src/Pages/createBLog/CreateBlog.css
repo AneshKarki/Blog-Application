@@ -84,3 +84,17 @@
   background-color: blueviolet;
   border-radius: 10px;
 }
+.titleC {
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  gap: 20px;
+}
+.titleC input {
+  outline: none;
+  border: none;
+  border-radius: 10px;
+  height: 5vh;
+  width: 50%;
+  padding-left: 10px;
+}
